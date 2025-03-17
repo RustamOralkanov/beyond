@@ -1,4 +1,4 @@
-import { Drawer, Flex, Form } from "antd";
+import { Button, Drawer, Flex, Form } from "antd";
 import BgImage from "./assets/images/beyond.jpg";
 import Logo from "./assets/logo.svg";
 import LogoBlack from "./assets/logo-black.svg";
@@ -11,23 +11,15 @@ import { transformData } from "./helpers/transformData";
 import { usePhone } from "./helpers/usePhone";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
-
-const languages = ["ru", "kk"];
+import { ActionLang } from "./components/ActionLang";
 
 function App() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [form] = Form.useForm();
     const [isActive, setIsActive] = useState(false);
-    const [lang, setLang] = useState("ru");
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
     const { formatPhoneNumber, validatePhoneNumber } = usePhone();
-
-    function changelang(value: string) {
-        setLang(value);
-        i18n.changeLanguage(value);
-    }
 
     function toggleDrawer() {
         setIsActive(!isActive);
@@ -65,42 +57,18 @@ function App() {
             <div className="flex gap-2 items-start absolute top-[60px] right-[60px] z-10 max-lg:top-9 max-lg:right-5">
                 <a
                     href="tel:222"
-                    className="text-white text-[32px] font-bold h-[50px] px-5 !bg-[#091A21] rounded-full  max-lg:text-[24px]  max-lg:py-3  max-lg:px-[15px] cursor-pointer"
+                    className="text-white text-[32px] font-semibold h-[50px] px-5 !bg-[#091A21] rounded-full  max-lg:text-[24px]  max-lg:py-3  max-lg:px-[15px] cursor-pointer leading-none flex items-center"
                 >
                     222
                 </a>
-                <div className="flex flex-col gap-[2px] group">
-                    <div
-                        className="w-[50px] h-[50px] rounded-full border border-white flex justify-center items-center text-[20px] uppercase text-white"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        {lang}
-                    </div>
-                    <div
-                        className={`absolute top-full mt-2 flex-col items-center w-[50px] gap-2.5 rounded-full border border-white py-[15px] transition-all duration-300 
-                ${isOpen ? "flex opacity-100" : "hidden opacity-0"} group-hover:flex group-hover:opacity-100`}
-                    >
-                        {languages.map((l) => (
-                            <span
-                                key={l}
-                                className={["text-[20px] uppercase text-white cursor-pointer", l === lang ? "!text-[#AF9475]" : ""].join(" ")}
-                                onClick={() => {
-                                    changelang(l);
-                                    setIsOpen(!isOpen);
-                                }}
-                            >
-                                {l}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                <ActionLang />
             </div>
             <div className="flex-1 flex flex-col items-center justify-center px-10 max-lg:py-6">
-                <div className="flex flex-col gap-[118px] items-center max-lg:items-start max-lg:gap-[76px]">
-                    <img src={Logo} alt="logo" className="h-[209px] max-lg:h-[74px] max-lg:-ml-5" />
+                <div className="flex flex-col gap-[6.146vw] items-center max-lg:items-start max-lg:gap-[76px]">
+                    <img src={Logo} alt="logo" className="h-[10.885vw] max-lg:h-[74px] max-lg:-ml-5" />
                     <div className="flex flex-col gap-10 items-center max-lg:gap-4">
                         <div className="flex flex-col gap-6 items-center max-w-[704px]">
-                            <h2 className="text-center text-[#AF9475] text-[43px] uppercase max-w-[468px] leading-[150%] max-lg:text-[30px]">
+                            <h2 className="text-center text-[#AF9475] text-[2.24vw] uppercase max-w-[468px] leading-[150%] max-lg:text-[30px]">
                                 <div className="overflow-hidden">
                                     <motion.div initial={{ y: 40 }} animate={{ y: 0 }} transition={{ duration: 1 }}>
                                         {t("1")}
@@ -113,7 +81,7 @@ function App() {
                                 </div>
                             </h2>
                             <motion.p
-                                className="text-center text-[#F4F5F9] text-[26px] font-light max-lg:text-base"
+                                className="text-center text-[#F4F5F9] text-[1.354vw] font-light max-lg:text-base"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ duration: 1.8 }}
@@ -149,7 +117,7 @@ function App() {
                     <Flex vertical gap={60}>
                         <ActionClose className="cursor-pointer ml-auto" onClick={toggleDrawer} />
                         <div className="!px-10 flex flex-col gap-15 max-lg:!px-5">
-                            <h3 className="text-5xl leading-none font-medium max-w-[340px]  max-lg:text-[32px]">{t("4")}</h3>
+                            <h3 className="text-5xl leading-none font-medium max-w-[340px] text-[#091A21] max-lg:text-[32px]">{t("4")}</h3>
                             <Form className="flex flex-col gap-4" form={form} onFinish={onFinish}>
                                 <Form.Item name={"name"} rules={[{ required: true, message: t("12") }]}>
                                     <CustomInput placeholder={t("5")} />
@@ -172,14 +140,14 @@ function App() {
                                     </a>
                                 </span>
                                 <Form.Item>
-                                    <button
-                                        disabled={isLoading}
-                                        type="submit"
-                                        className="mt-6 h-[60px] px-[30px] rounded-[50px] text-[#091A21] border border-[#091A21] text-[20px] cursor-pointer flex items-center gap-2.5 hover:bg-[#162A73] hover:border-[#162A73] hover:text-white transition duration-400 ease-in-out disabled:opacity-30 disabled:cursor-not-allowed"
+                                    <Button
+                                        loading={isLoading}
+                                        htmlType="submit"
+                                        className="mt-6 !h-[60px] !px-[30px] !rounded-[50px] !text-[#091A21] !border !border-[#091A21] !text-[20px] !flex items-center !gap-2.5 hover:!bg-[#162A73] hover:!border-[#162A73] hover:!text-white transition duration-400 ease-in-out disabled:opacity-30 disabled:cursor-not-allowed"
                                     >
                                         {t("9")}
                                         <ActionArrow />
-                                    </button>
+                                    </Button>
                                 </Form.Item>
                             </Form>
                         </div>
