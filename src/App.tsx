@@ -1,5 +1,6 @@
 import { Button, Drawer, Flex, Form } from "antd";
-import BgImage from "./assets/images/beyond.jpg";
+import BgImage from "./assets/images/beyond.webp";
+import BgMobileImage from "./assets/images/beyond-mobile.png";
 import Logo from "./assets/logo.svg";
 import LogoBlack from "./assets/logo-black.svg";
 import { ActionArrow } from "./components/ActionArrow";
@@ -102,9 +103,10 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div className="h-full w-[54%] relative overflow-hidden max-lg:w-full max-lg:h-[288px]">
-                <div className="w-60 bg-[#091A21] h-[calc(100%_+_1200px)] absolute -left-[150px] top-2/4 -translate-y-2/4 rotate-[10deg] max-lg:rotate-[86deg]  max-lg:-top-[80px]  max-lg:-transalte-y-0  max-lg:left-2/4  max-lg:-translate-x-2/4" />
-                <img src={BgImage} alt="background-image" className="h-full w-full object-cover" />
+            <div className="h-full w-[54%] relative overflow-hidden max-lg:w-full max-lg:h-auto">
+                <div className="w-60 bg-[#091A21] h-[calc(100%_+_1200px)] absolute -left-[150px] top-2/4 -translate-y-2/4 rotate-[10deg] block max-lg:hidden max-lg:rotate-[86deg]  max-lg:-top-[80px]  max-lg:-transalte-y-0  max-lg:left-2/4  max-lg:-translate-x-2/4" />
+                <img src={BgImage} alt="background-image" className="h-full w-full object-cover max-lg:hidden" />
+                <img src={BgMobileImage} alt="background-image" className="h-full w-full object-cover max-lg:block" />
             </div>
             <Drawer
                 open={isActive}
@@ -162,7 +164,7 @@ function App() {
                 </Flex>
             </Drawer>
             {isSuccess && (
-                <div className="fixed h-dvh w-dvw bg-[#F4F5F9] z-50">
+                <div className="fixed h-dvh w-dvw bg-[#F4F5F9] z-50" id="callback-success">
                     <Flex vertical justify="center" align="center" className="gap-6 h-full  max-lg:!p-5">
                         <img src={LogoBlack} alt="logo" />
                         <p className="max-w-100 text-center text-base text-[#585A5E]">{t("10")}</p>
