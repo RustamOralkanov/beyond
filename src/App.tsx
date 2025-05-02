@@ -164,7 +164,7 @@ function App() {
                 </Flex>
             </Drawer>
             {isSuccess && (
-                <div className="fixed h-dvh w-dvw bg-[#F4F5F9] z-50" id="callback-success">
+                <div className="success fixed h-dvh w-dvw bg-[#F4F5F9] z-50" id="callback-success">
                     <Flex vertical justify="center" align="center" className="gap-6 h-full  max-lg:!p-5">
                         <img src={LogoBlack} alt="logo" />
                         <p className="max-w-100 text-center text-base text-[#585A5E]">{t("10")}</p>
