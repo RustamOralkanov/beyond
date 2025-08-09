@@ -131,13 +131,14 @@ function PreLaunch() {
             >
                 <Flex vertical justify="space-between" className="h-full">
                     <Flex vertical gap={60}>
-                        <ActionClose className="cursor-pointer ml-auto" onClick={toggleDrawer} />
+                        <div className="flex items-center justify-between">
+                            <ActionLang isBlack />
+                            <ActionClose className="cursor-pointer ml-auto" onClick={toggleDrawer} />
+                        </div>
                         <div className="!px-10 flex flex-col gap-15 max-lg:!px-5">
                             <div className="flex flex-col gap-3">
-                                <h3 className="text-4xl leading-none font-medium max-w-[340px] text-[#091A21] max-lg:text-[32px]">
-                                    Участие в VIP pre-launch RAMS Beyond Almaty
-                                </h3>
-                                <p>Заполните форму, чтобы мы внесли вас в список гостей закрытой презентации.</p>
+                                <h3 className="text-4xl leading-none font-medium max-w-[340px] text-[#091A21] max-lg:text-[32px]">{t("15")}</h3>
+                                <p>{t("16")}</p>
                             </div>
                             <Form className="flex flex-col gap-4" form={form} onFinish={onFinish}>
                                 <Form.Item name={"name"} rules={[{ required: true, message: t("12") }]}>
@@ -156,11 +157,7 @@ function PreLaunch() {
                                 </Form.Item>
                                 <span className="text-sm text-[#727273]">
                                     {t("7")}{" "}
-                                    <a
-                                        href="https://ramsqz.com/ru/privacy-policy"
-                                        target="_blank"
-                                        className="!text-[#000000] !underline"
-                                    >
+                                    <a href="https://ramsqz.com/ru/privacy-policy" target="_blank" className="!text-[#000000] !underline">
                                         {t("8")}
                                     </a>
                                 </span>
