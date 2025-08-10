@@ -14,7 +14,7 @@ export const ActionLang = ({ isBlack = false }: { isBlack?: boolean }) => {
 
     return (
         <Popover
-            placement="bottom"
+            placement={isBlack ? "right" : "bottom"}
             content={
                 <Flex vertical gap={10}>
                     {languages.map((l) => (
