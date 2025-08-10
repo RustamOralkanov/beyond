@@ -117,7 +117,10 @@ function App() {
             >
                 <Flex vertical justify="space-between" className="h-full">
                     <Flex vertical gap={60}>
-                        <ActionClose className="cursor-pointer ml-auto" onClick={toggleDrawer} />
+                        <div className="flex items-center justify-between">
+                            <ActionLang isBlack />
+                            <ActionClose className="cursor-pointer ml-auto" onClick={toggleDrawer} />
+                        </div>
                         <div className="!px-10 flex flex-col gap-15 max-lg:!px-5">
                             <h3 className="text-5xl leading-none font-medium max-w-[340px] text-[#091A21] max-lg:text-[32px]">{t("4")}</h3>
                             <Form className="flex flex-col gap-4" form={form} onFinish={onFinish}>
